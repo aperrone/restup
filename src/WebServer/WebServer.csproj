@@ -143,6 +143,7 @@
     <Compile Include="Http\RouteRegistration.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="Models\Contracts\IRouteHandler.cs" />
+    <Compile Include="Models\Contracts\IStreamHandler.cs" />
     <Compile Include="Models\Schemas\MediaType.cs" />
     <Compile Include="Models\Schemas\RestResponse.cs" />
     <Compile Include="Models\Schemas\RestServerRequest.cs" />
@@ -181,6 +182,8 @@
     <Compile Include="Rest\RestToHttpResponseConverter.cs" />
     <Compile Include="Rest\UriParser.cs" />
     <Compile Include="Rest\UriParameter.cs" />
+    <Compile Include="Websocket\WebSocketConnection.cs" />
+    <Compile Include="Websocket\WebSocketRouteHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

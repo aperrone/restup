@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webserver", "Webserver\Webserver.csproj", "{837B8FF3-DED6-4DC7-AD58-DBB0B3E44DD4}"
 EndProject
@@ -27,10 +27,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webserver.Models", "Webserv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer.Logging", "WebServer.Logging\WebServer.Logging.csproj", "{06A3D120-5923-4AD1-8411-7395A1EC6E94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWebSocket", "DemoWebSocket\DemoWebSocket.csproj", "{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		HttpMessage\HttpMessage.projitems*{837b8ff3-ded6-4dc7-ad58-dbb0b3e44dd4}*SharedItemsImports = 4
 		HttpMessage\HttpMessage.projitems*{13aba022-a7c1-45b7-9e47-2bb74f2a7f9f}*SharedItemsImports = 13
+		HttpMessage\HttpMessage.projitems*{837b8ff3-ded6-4dc7-ad58-dbb0b3e44dd4}*SharedItemsImports = 4
 		HttpMessage\HttpMessage.projitems*{d313f525-2d90-4bf5-8857-2698ee580a65}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -200,6 +202,26 @@ Global
 		{06A3D120-5923-4AD1-8411-7395A1EC6E94}.Release|x64.Build.0 = Release|x64
 		{06A3D120-5923-4AD1-8411-7395A1EC6E94}.Release|x86.ActiveCfg = Release|x86
 		{06A3D120-5923-4AD1-8411-7395A1EC6E94}.Release|x86.Build.0 = Release|x86
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Debug|ARM.ActiveCfg = Debug|ARM
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Debug|ARM.Build.0 = Debug|ARM
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Debug|ARM.Deploy.0 = Debug|ARM
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Debug|x64.ActiveCfg = Debug|x64
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Debug|x64.Build.0 = Debug|x64
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Debug|x64.Deploy.0 = Debug|x64
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Debug|x86.ActiveCfg = Debug|x86
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Debug|x86.Build.0 = Debug|x86
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Debug|x86.Deploy.0 = Debug|x86
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Release|Any CPU.ActiveCfg = Release|x86
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Release|ARM.ActiveCfg = Release|ARM
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Release|ARM.Build.0 = Release|ARM
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Release|ARM.Deploy.0 = Release|ARM
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Release|x64.ActiveCfg = Release|x64
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Release|x64.Build.0 = Release|x64
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Release|x64.Deploy.0 = Release|x64
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Release|x86.ActiveCfg = Release|x86
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Release|x86.Build.0 = Release|x86
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -211,5 +233,9 @@ Global
 		{8383DC52-161B-4085-B133-4420E995668D} = {8C7C3EFF-01E6-4FCD-91BD-C4C40FF71777}
 		{CCC377F6-F5D1-4A07-A0E8-58894E8196FA} = {8C7C3EFF-01E6-4FCD-91BD-C4C40FF71777}
 		{71394B97-2990-4E92-A7CC-0642D4860651} = {8C7C3EFF-01E6-4FCD-91BD-C4C40FF71777}
+		{48B270D5-EEB1-4246-A0F2-52F4D54B6D55} = {8C7C3EFF-01E6-4FCD-91BD-C4C40FF71777}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0AB93CDE-FDA3-4C78-BF98-FF4D3B3370C3}
 	EndGlobalSection
 EndGlobal

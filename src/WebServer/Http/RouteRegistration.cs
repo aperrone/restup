@@ -2,6 +2,7 @@
 using Restup.Webserver.Models.Contracts;
 using System;
 using System.Threading.Tasks;
+using Windows.Networking.Sockets;
 
 namespace Restup.Webserver.Http
 {
@@ -48,6 +49,12 @@ namespace Restup.Webserver.Http
             var unPrefixedRequest = CreateHttpRequestWithUnprefixedUrl(request, _urlPrefix);
 
             return await _routeHandler.HandleRequest(unPrefixedRequest);
+        }
+
+        public async Task Stream(StreamSocket socket)
+        {
+            if (_routeHandler is IStreamHandler)
+                await ((IStreamHandler)_routeHandler).Stream(socket);
         }
 
         public int CompareTo(RouteRegistration other)

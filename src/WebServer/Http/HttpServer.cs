@@ -9,6 +9,7 @@ using Restup.HttpMessage.Headers.Response;
 using Restup.HttpMessage.Models.Contracts;
 using Restup.HttpMessage.Models.Schemas;
 using Restup.WebServer.Logging;
+using Windows.Storage.Streams;
 
 namespace Restup.Webserver.Http
 {
@@ -64,11 +65,18 @@ namespace Restup.Webserver.Http
                 try
                 {
                     using (var inputStream = args.Socket.InputStream)
+                    using (var outputStream = args.Socket.OutputStream)
                     {
                         var request = await MutableHttpServerRequest.Parse(inputStream);
-                        var httpResponse = await HandleRequestAsync(request);
+                        var result = await HandleRequestExAsync(request);
+                        var httpResponse = result.Item1;
+                        var routeRegistration = result.Item2;
+                        await WriteResponseAsync(httpResponse, outputStream);
 
-                        await WriteResponseAsync(httpResponse, args.Socket);
+                        if (routeRegistration != null)
+                        {
+                            await routeRegistration.Stream(args.Socket);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -88,10 +96,16 @@ namespace Restup.Webserver.Http
 
         internal async Task<HttpServerResponse> HandleRequestAsync(IHttpServerRequest request)
         {
+            var r = await HandleRequestExAsync(request);
+            return r.Item1;
+        }
+
+        internal async Task<Tuple<HttpServerResponse, RouteRegistration>> HandleRequestExAsync(IHttpServerRequest request)
+        {
             var routeRegistration = _routes.FirstOrDefault(x => x.Match(request));
             if (routeRegistration == null)
             {
-                return HttpServerResponse.Create(new Version(1, 1), HttpResponseStatus.BadRequest);
+                return Tuple.Create<HttpServerResponse, RouteRegistration>(HttpServerResponse.Create(new Version(1, 1), HttpResponseStatus.BadRequest), null);
             }
 
             var httpResponse = ApplyMessageInspectorsBeforeHandleRequest(request);
@@ -102,7 +116,7 @@ namespace Restup.Webserver.Http
             httpResponse = await AddContentEncodingAsync(httpResponse, request.AcceptEncodings);
             httpResponse = ApplyMessageInspectorsAfterHandleRequest(request, httpResponse);
 
-            return httpResponse;
+            return Tuple.Create(httpResponse, routeRegistration);
         }
 
         private HttpServerResponse ApplyMessageInspectorsBeforeHandleRequest(IHttpServerRequest request)
@@ -157,13 +171,10 @@ namespace Restup.Webserver.Http
             }
         }
 
-        private static async Task WriteResponseAsync(HttpServerResponse response, StreamSocket socket)
+        private static async Task WriteResponseAsync(HttpServerResponse response, IOutputStream output)
         {
-            using (var output = socket.OutputStream)
-            {
-                await output.WriteAsync(response.ToBytes().AsBuffer());
-                await output.FlushAsync();
-            }
+            await output.WriteAsync(response.ToBytes().AsBuffer());
+            await output.FlushAsync();
         }
 
         void IDisposable.Dispose()
